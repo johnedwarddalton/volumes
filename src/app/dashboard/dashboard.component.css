@@ -1,0 +1,131 @@
+.container-flex {
+  padding: 20px;
+}
+
+.largeDropdown {
+  font-size: 2rem;
+}
+
+.progress {
+  background: rgb(1,84,251);
+  background: -moz-linear-gradient(90deg, rgba(1,84,251,1) 0%, rgba(255,0,0,1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(1,84,251,1) 0%, rgba(255,0,0,1) 100%);
+  background: linear-gradient(90deg, rgba(1,84,251,1) 0%, rgba(255,0,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0154fb",endColorstr="#ff0000",GradientType=1);
+}
+
+.pgbar0 {
+  height: 25px;
+}
+
+.pgbar2 {
+  background-color: lightgrey;
+}
+
+.control-box {
+  display: inline-block;
+}
+
+#currency-selector {
+  max-width: 150px;
+  margin-right: 25px;
+}
+
+#volumeTable tr {
+	width: 100%;
+  height: 5vh;
+}
+
+#volumeTable tr.totals {
+  height: 8vh;
+}
+
+#volumeTable .small {
+  font-size: 80%;
+}
+
+#volumeTable td {
+	font-size: 130%;
+	vertical-align: bottom;
+}
+
+#volumeTable td {
+    vertical-align: middle;
+}
+
+
+#volumeTable .current {
+	color: #2c7992;
+}
+
+#volumeTable .volume {
+	font-size: 1.4em;
+}
+
+#volumeTable .range {
+  font-size: 120%;
+  color: #999;
+}
+
+
+#volumeTable td.term {
+    width: 4%;
+}
+
+#volumeTable td.current {
+    width: 13%;
+    text-align: center;
+}
+
+#volumeTable td.change {
+    text-align: center;
+    width: 6%;
+}
+
+#volumeTable td.eqvt {
+    text-align: center;
+    width: 8%;
+    color: #565;
+}
+
+#split-header   {
+    text-align: center;
+    width: 12%;
+}
+
+#volumeTable td.repo   {
+    text-align: center;
+    width: 12%;
+}
+
+#volumeTable td.barchart {
+    width: 12%;
+}
+#volumeTable td.change {
+  color: #888;
+}
+
+#volumeTable td.change.positive {
+    color: #428bca;
+}
+#volumeTable td.activity {
+    width: 9%;
+}
+
+#volumeTable .max {
+  color: #4c4c4c;
+}
+#volumeTable .dayavg{
+  color: #4c4c4c;
+}
+
+#volumeTable .daymax{
+	color:#4c4c4c;
+}
+
+#volumeTable .history {
+	text-align: center;
+}
+#volumeTable.clear {
+  clear: both;
+}

@@ -1,1 +1,75 @@
-<p>dashboard works!</p>
+<div class="container-flex">
+  <div style="margin:auto;"><h2 style="text-align:center;">IRS Volumes Dashboard</h2></div>
+  <div class="controls">
+    <select id="currency-selector" class="form-select form-select-lg mb3 control-box" [(ngModel)] = "this.currency" (change)="refresh()">
+      <option default>USD</option>
+      <option>EUR</option>
+      <option>GBP</option>
+    </select>
+    <div id = "rfr-selector" class="form-check form-switch control-box" style="font-size: 150%;">
+      <input class="form-check-input" type="checkbox" id="rfrOnlyCheckBox" [(ngModel)] = "this.rfrOnly" (change)="refreshDisplay()">
+      <label class="form-check-label" for="rfrOnlyCheckBox">Show RFR Trades only</label>
+    </div>
+  </div>
+
+  <table id="volumeTable" class="table table-striped">
+  	<thead>
+			<tr class="explain">
+				<td class="term"></td>
+				<td class="range"></td>
+				<td class="current"></td>
+				<td class="change"></td>
+				<td class="eqvt"></td>
+				<td id="split-header">RFR<br /><span class="small">(% nominal)</span></td>
+				<td class="barchart"></td>
+				<td class="history" colspan="2">At This Time</td>
+				<td class="history" colspan="2">Daily</td>
+        <td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="term">Maturity</td>
+				<td class="range">&nbsp;</td>
+				<td class="current">Volume ({{this.currency}})</td>
+				<td class="change">vs avg</td>
+				<td class = "eqvt">10y eqvt</td>
+				<td id="split-label" class = "repo">libor:rfr</td>
+				<td class="history spark">Last 2 Weeks</td>
+				<td class="history avg">Avg</td>
+				<td class="history max">Max</td>
+				<td class="history dayavg">Avg</td>
+				<td class="history daymax">Max</td>
+        <td class="activity">Activity</td>
+			</tr>
+  	</thead>
+  	<tbody>
+      <tr scope="row" class="totals">
+        <td class="term">Total</td>
+        <td class="range">&nbsp;</td>
+        <td class="current">{{totals.current | number: '1.2-2'}}bn</td>
+        <td class="change"><span *ngIf= "totals.current > totals.avg">+</span>{{ 100*(totals.current/totals.avg-1) | number: '1.1-1' }}%</td>
+        <td class = "eqvt">{{totals.eqvt | number: '1.2-2'}}</td>
+        <td id="split-label" class = "repo">{{100 * (totals.all-totals.rfr) / totals.all | number: '1.0-0'}} : {{ 100 * totals.rfr / totals.all | number: '1.0-0'}}</td>
+        <td class="history spark"><app-barchart [seriesData] = "volume_history['total']" [avg] = "totals.dayavg" title = "totals"></app-barchart></td>
+        <td class="history avg">{{totals.avg | number: '1.1-1'}}</td>
+        <td class="history max">{{totals.max| number: '1.1-1'}}</td>
+        <td class="history dayavg">{{totals.dayavg| number: '1.1-1'}}</td>
+        <td class="history daymax">{{totals.daymax| number: '1.1-1'}}</td>
+        <td class="activity"><div class="progress pgbar0"><div class="progress-bar bg-transparent" [style.width]="pg1Width(totals.current/totals.avg)"></div><div class="progress-bar pgbar2"  [style.width]="pg2Width(totals.current/totals.avg)"></div></div></td>
+      </tr>
+      <tr *ngFor = "let term of terms; let i = index" scope="row">
+        <td class="term">{{term + "y"}}</td>
+        <td class="range">{{bands[i]}}</td>
+        <td class="current">{{stats[i].current | number: '1.2-2'}}bn</td>
+        <td class="change"><span *ngIf= "stats[i].current > stats[i].avg">+</span>{{ 100*(stats[i].current/stats[i].avg-1) | number: '1.1-1' }}%</td>
+        <td class = "eqvt">{{stats[i].eqvt | number: '1.2-2'}}</td>
+        <td id="split-label" class = "repo">{{100 * (stats[i].all-stats[i].rfr) / stats[i].all | number: '1.0-0'}} : {{ 100 * stats[i].rfr / stats[i].all | number: '1.0-0'}}</td>
+        <td id="sparkBox_{{i}}" class="history spark"><app-barchart [seriesData] = "volume_history[term + 'Y']" [avg] = "stats[i].dayavg" title = "totals"></app-barchart></td>
+        <td class="history avg">{{stats[i].avg | number: '1.1-1'}}</td>
+        <td class="history max">{{stats[i].max| number: '1.1-1'}}</td>
+        <td class="history dayavg">{{stats[i].dayavg| number: '1.1-1'}}</td>
+        <td class="history daymax">{{stats[i].daymax| number: '1.1-1'}}</td>
+        <td class="activity"><div class="progress pgbar0"><div class="progress-bar bg-transparent" [style.width]="pg1Width(stats[i].current/stats[i].avg)"></div><div class="progress-bar pgbar2"  [style.width]="pg2Width(stats[i].current/stats[i].avg)"></div></div></td>
+      </tr>
+  	</tbody>
+  </table>
+</div>

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   chathamUrl : `http://jaqen.local/live/chatham_rates.php`,
+  sdrBaseUrl : `http://jaqen.local/trades/rest`,
 };
 
 /*
