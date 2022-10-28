@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe ( data => {
           this.daily_hist = data;
           this.updateDailyStats();
-
+          this.updateSparkCharts();
         }
     );
   }
@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   refreshDisplay(){
     this.getATTHistory();
     this.updateDailyStats();
-    this.updateSparkCharts();
+
   }
 
   refresh(){
