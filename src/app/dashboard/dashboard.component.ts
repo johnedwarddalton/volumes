@@ -82,6 +82,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe ( data => {
           this.att_hist = data;
           this.updateATTStats();
+          this.updateSparkCharts();
         }
     );
   }
@@ -91,7 +92,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe ( data => {
           this.daily_hist = data;
           this.updateDailyStats();
-          this.updateSparkCharts();
         }
     );
   }
