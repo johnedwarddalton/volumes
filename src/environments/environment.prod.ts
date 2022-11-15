@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  chathamUrl : `http://johndalton.live/sdr/chatham_rates.php`,
-  sdrBaseUrl : `http://johndalton.live/trades/rest`,
+  chathamUrl : `https://johndalton.live/sdr/chatham_rates.php`,
+  sdrBaseUrl : `https://johndalton.live/trades/rest`,
 };

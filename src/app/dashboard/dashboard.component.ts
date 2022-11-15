@@ -22,16 +22,17 @@ interface Stat {
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private _setIntervalHandler: any;
-  terms = [1,2,3,5,7,10,30];
-  bands = ["0.5-1.5y","1.5-2.5y","2.5-3.5y","3.5-5.5y","5.5-7.5y","7.5-15y","15y+"];
+  terms = [0,1,2,3,5,7,10,30];
+  bands = ["0-0.5y","0.5-1.5y","1.5-2.5y","2.5-3.5y","3.5-5.5y","5.5-7.5y","7.5-15y","15y+"];
   rates: Curve = {};
-  eqvts: Curve = {1: 0.116, 2: 0.227, 3: 0.335, 5: 0.541, 7: 0.734, 10:1.0, 30: 2.30};
+  eqvts: Curve = {0: 0.05, 1: 0.116, 2: 0.227, 3: 0.335, 5: 0.541, 7: 0.734, 10:1.0, 30: 2.30};
   daily_totals: String[][] = [[]];
   volume_history: { [label: string] : number[] } = {};
   currency: String = 'USD';
   rfrOnly: boolean = false;
 
   stats:  Stat[] = [
+    { current : 0, all: 0, rfr: 0, eqvt: 0, avg : 0, max : 0, dayavg: 0, daymax: 0},
     { current : 0, all: 0, rfr: 0, eqvt: 0, avg : 0, max : 0, dayavg: 0, daymax: 0},
     { current : 0, all: 0, rfr: 0, eqvt: 0, avg : 0, max : 0, dayavg: 0, daymax: 0},
     { current : 0, all: 0, rfr: 0, eqvt: 0, avg : 0, max : 0, dayavg: 0, daymax: 0},
@@ -174,7 +175,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor( private chathamService: ChathamService, private sdrService: SdrService) { }
 
   ngOnInit(): void {
-    this.getChathamRates();
+    //this.getChathamRates();
     this.getDailyTotals();
     this.getDailyHistory();
     this.getATTHistory();
